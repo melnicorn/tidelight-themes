@@ -2,7 +2,7 @@
   "name": "tidelight-theme",
   "displayName": "Tidelight Theme Pack",
   "description": "Tidelight is a VS Code theme family with a cyan-led palette and clean, balanced contrast.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "slow-clap-software",
   "repository": {
     "type": "git",

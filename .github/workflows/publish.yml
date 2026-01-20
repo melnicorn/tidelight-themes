@@ -1,0 +1,62 @@
+name: Publish Extension
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish and Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check for existing release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(jq -r .version package.json)
+          echo "Checking for version v$VERSION..."
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "Error: Release v$VERSION already exists."
+            exit 1
+          fi
+          # Also check for tag existence just in case there is a tag but no release
+          if git ls-remote --tags origin | grep -q "refs/tags/v$VERSION$"; then
+            echo "Error: Tag v$VERSION already exists."
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Package Extension
+        run: vsce package
+
+      - name: Publish to Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: vsce publish -p $VSCE_PAT
+
+      - name: Install ovsx
+        run: npm install -g ovsx
+
+      - name: Publish to Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: ovsx publish -p $OVSX_PAT
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VSIX_FILE=$(ls *.vsix)
+          gh release create "v$VERSION" "$VSIX_FILE" --generate-notes --title "v$VERSION"
