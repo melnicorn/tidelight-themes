@@ -10,7 +10,7 @@ A cyan-led VS Code theme family built for clean contrast, comfortable readabilit
 - **Tidelight Contrast** (high-contrast dark)
 - **Tidelight Dawn** (light, clean + calm)
 - **Tidelight Daybreak** (light, brighter + higher contrast)
-- **Tidelight High Noon** (light, punchy + crisp)
+- **Tidelight High Noon** (light, warm + bright)
 - **Tidelight Shore** (light, neutral “paper”)
 - **Tidelight Contrast** (high-contrast light)
 
@@ -20,17 +20,16 @@ A cyan-led VS Code theme family built for clean contrast, comfortable readabilit
 
 ## Screenshots
 
-> Add screenshots to help users preview the vibe quickly.
->
-> Recommended file names:
-> - `images/tidelight-deep.png`
-> - `images/tidelight-dusk.png`
-> - `images/tidelight-fog.png`
-> - `images/tidelight-dawn.png`
-
-Example:
-
 ![Tidelight Deep](images/tidelight-deep.png)
+![Tidelight Dusk](images/tidelight-dusk.png)
+![Tidelight Midnight](images/tidelight-midnight.png)
+![Tidelight Fog](images/tidelight-fog.png)
+![Tidelight Contrast (dark)](images/tidelight-contrast-(dark).png)
+![Tidelight Dawn](images/tidelight-dawn.png)
+![Tidelight Daybreak](images/tidelight-daybreak.png)
+![Tidelight High Noon](images/tidelight-high-noon.png)
+![Tidelight Shore](images/tidelight-shore.png)
+![Tidelight Contrast (light)](images/tidelight-contrast-(light).png)
 
 ---
 
